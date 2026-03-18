@@ -1,0 +1,20 @@
+'use client'
+import { useState, useEffect } from 'react'
+
+export function useScrollProgress(): number {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const update = () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.body.scrollHeight - window.innerHeight
+      setProgress(docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0)
+    }
+
+    window.addEventListener('scroll', update, { passive: true })
+    update()
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
+  return progress
+}

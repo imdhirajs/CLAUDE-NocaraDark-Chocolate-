@@ -1,0 +1,382 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────
+   CSS DESIGN TOKENS — NOCARA DARK
+───────────────────────────────────────── */
+:root {
+  --bg-deep:        #0D0600;
+  --bg-section:     #1A0A02;
+  --bg-card:        #261208;
+  --cocoa:          #3B1F0A;
+  --molten:         #D4831A;
+  --molten-light:   #F0A84A;
+  --cream:          #FFF8E7;
+  --cream-muted:    #C8A882;
+
+  --gradient-hero:  linear-gradient(180deg, #0D0600 0%, #1A0A02 50%, #0D0600 100%);
+  --gradient-gold:  linear-gradient(135deg, #D4831A 0%, #F0A84A 50%, #D4831A 100%);
+  --gradient-text:  linear-gradient(135deg, #FFF8E7 0%, #D4831A 40%, #F0A84A 100%);
+  --gradient-reborn: linear-gradient(135deg, #D4831A 0%, #F0A84A 50%, #FFF8E7 100%);
+}
+
+/* ─────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--cream);
+  cursor: none;
+  overscroll-behavior: none;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─────────────────────────────────────────
+   TYPOGRAPHY SCALE
+───────────────────────────────────────── */
+.type-display {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 100px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -2px;
+  line-height: 1.0;
+}
+
+.type-h1 {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 76px;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+
+.type-h2 {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.type-h3 {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.type-body {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.type-caption {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.type-cta {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────
+   GRADIENT TEXT UTILITY
+───────────────────────────────────────── */
+.text-gradient-hero {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-reborn {
+  background: var(--gradient-reborn);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────
+   CUSTOM CURSOR
+───────────────────────────────────────── */
+.cursor-inner {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--molten);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-outer {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--molten);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-outer.cursor-cta {
+  width: 48px;
+  height: 48px;
+}
+
+/* ─────────────────────────────────────────
+   WARM CANVAS GLOW
+───────────────────────────────────────── */
+.warm-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212, 131, 26, 0.06) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   SCROLL PROGRESS BAR
+───────────────────────────────────────── */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--molten), var(--molten-light));
+  z-index: 9998;
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   GRAIN TEXTURE
+───────────────────────────────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+}
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(13, 6, 0, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.navbar-logo {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.navbar-link {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: var(--molten);
+}
+
+.navbar-pill {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--molten);
+  border: 1px solid var(--molten);
+  padding: 8px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: none;
+}
+
+.navbar-pill:hover {
+  background: var(--molten);
+  color: var(--bg-deep);
+}
+
+/* ─────────────────────────────────────────
+   CTA BUTTON
+───────────────────────────────────────── */
+.cta-button {
+  display: inline-block;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--molten), var(--molten-light));
+  padding: 18px 52px;
+  border-radius: 0;
+  border: none;
+  cursor: none;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 50px rgba(212, 131, 26, 0.4);
+}
+
+.cta-button:hover {
+  transform: scale(1.03);
+}
+
+/* ─────────────────────────────────────────
+   TASTING NOTES CARDS
+───────────────────────────────────────── */
+.tasting-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 131, 26, 0.15);
+  border-radius: 4px;
+  padding: 40px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  cursor: default;
+}
+
+.tasting-card:hover {
+  border-color: rgba(212, 131, 26, 0.5);
+  transform: translateY(-4px);
+}
+
+/* ─────────────────────────────────────────
+   PAGE FADE IN
+───────────────────────────────────────── */
+.page-enter {
+  animation: fadeIn 0.7s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─────────────────────────────────────────
+   ORIGIN SECTION GRID
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .origin-cols-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .origin-cols-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(212, 131, 26, 0.12);
+    padding: 40px 0 !important;
+  }
+  .origin-cols-grid > div:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ─────────────────────────────────────────
+   TASTING NOTES GRID
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .tasting-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #collection {
+    padding: 80px 24px !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+
+  .cursor-inner,
+  .cursor-outer { display: none; }
+
+  .navbar {
+    padding: 20px 24px;
+  }
+
+  .navbar-links .navbar-link {
+    display: none;
+  }
+
+  .type-display {
+    font-size: 56px;
+    letter-spacing: -1px;
+  }
+
+  .type-h1 {
+    font-size: 44px;
+    letter-spacing: -0.5px;
+  }
+
+  .type-h2 {
+    font-size: 36px;
+    letter-spacing: -0.5px;
+  }
+}
