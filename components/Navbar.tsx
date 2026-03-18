@@ -11,7 +11,14 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+    <nav
+      className={`navbar${scrolled ? ' scrolled' : ''}`}
+      style={{
+        background: scrolled ? 'rgba(13,6,0,0.88)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+      }}
+    >
       {/* Logo */}
       <a href="#" className="navbar-logo">
         Nocara Dark

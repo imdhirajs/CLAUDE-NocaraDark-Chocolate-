@@ -32,6 +32,10 @@ export default function Home() {
         <LoadingScreen frameCount={FRAME_COUNT} onComplete={handleLoadComplete} />
       )}
 
+      {/* Navbar always on top — outside main so it's unaffected by fade opacity */}
+      <Navbar />
+      <ScrollProgressBar progress={globalProgress} />
+
       {/* Main site — fades in after loading */}
       <main
         style={{
@@ -39,10 +43,6 @@ export default function Home() {
           transition: 'opacity 0.7s ease',
         }}
       >
-        {/* Fixed UI elements */}
-        <Navbar />
-        {/* ScrollProgressBar uses global progress (full page scroll) */}
-        <ScrollProgressBar progress={globalProgress} />
 
         {/* ScrollCanvas manages its OWN canvas-local progress internally.
             canvasProgress = scrollY / (400vh) → 0..1 through the 500vh sticky section.
