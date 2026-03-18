@@ -26,8 +26,3 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Frames (generated from video via FFmpeg)
-public/frames/
-
-# Large video file
-*.mp4
